@@ -1,24 +1,12 @@
 package sample;
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Font;
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
+import java.io.IOException;
+import java.sql.*;
 
 class UserLogin extends JFrame {
 
@@ -28,22 +16,6 @@ class UserLogin extends JFrame {
     private JButton btnNewButton;
     private JLabel label;
     private JPanel contentPane;
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UserLogin frame = new UserLogin();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     /**
      * Create the frame.
@@ -97,6 +69,7 @@ class UserLogin extends JFrame {
                 String userName = textField.getText();
                 String password = passwordField.getText();
                 try {
+
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
                             "root", "piotrek22");
 
@@ -106,18 +79,28 @@ class UserLogin extends JFrame {
                     st.setString(1, userName);
                     st.setString(2, password);
                     ResultSet rs = st.executeQuery();
+
+
                     if (rs.next()) {
                         dispose();
-                        UserHome ah = new UserHome(connection,userName,password);
+                        UserHome ah = new UserHome(connection, userName, password);
                         ah.setTitle("Welcome");
                         ah.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
                     } else {
                         JOptionPane.showMessageDialog(btnNewButton, "Wrong Username & Password");
                     }
-                } catch (SQLException sqlException) {
+                    try {
+                        st.close();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+
+                } catch (SQLException | IOException sqlException) {
                     sqlException.printStackTrace();
                 }
+
+
             }
         });
 
@@ -126,5 +109,21 @@ class UserLogin extends JFrame {
         label = new JLabel("");
         label.setBounds(0, 0, 1008, 562);
         contentPane.add(label);
+    }
+
+    /**
+     * Launch the application.
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    UserLogin frame = new UserLogin();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
