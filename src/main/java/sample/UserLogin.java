@@ -108,7 +108,7 @@ class UserLogin extends JFrame {
                     ResultSet rs = st.executeQuery();
                     if (rs.next()) {
                         dispose();
-                        UserHome ah = new UserHome(userName);
+                        UserHome ah = new UserHome(connection,userName,password);
                         ah.setTitle("Welcome");
                         ah.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
