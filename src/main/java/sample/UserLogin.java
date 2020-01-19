@@ -85,7 +85,7 @@ class UserLogin extends JFrame {
                     if (rs.next()) {
                         dispose();
                         UserHome ah = new UserHome(connection, userName, password);
-                        ah.setTitle("Welcome");
+                        ah.setTitle("User Panel");
                         ah.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
                     } else {
@@ -118,7 +118,7 @@ class UserLogin extends JFrame {
                             "root", "piotrek22");
 
                     RegisterPanel ah = new RegisterPanel(connection);
-                    ah.setTitle("Welcome");
+                    ah.setTitle("Register Panel");
                     ah.setVisible(true);
 
                 } catch (SQLException | IOException sqlException) {
