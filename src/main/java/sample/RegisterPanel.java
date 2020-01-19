@@ -26,7 +26,7 @@ public class RegisterPanel extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Login");
+        JLabel lblNewLabel = new JLabel("Registration Panel");
         lblNewLabel.setForeground(Color.BLACK);
         lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 46));
         lblNewLabel.setBounds(423, 13, 273, 93);
@@ -56,7 +56,7 @@ public class RegisterPanel extends JFrame {
         lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 31));
         lblPassword.setBounds(250, 286, 193, 52);
         contentPane.add(lblPassword);
-        btnNewButton = new JButton("Login");
+        btnNewButton = new JButton("Register");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
         btnNewButton.setBounds(545, 392, 162, 73);
         btnNewButton.addActionListener(new ActionListener() {

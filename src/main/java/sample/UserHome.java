@@ -2,19 +2,22 @@ package sample;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserHome extends JFrame {
     private static final long serialVersionUID = 1L;
-    private JTextField textField;
     private JPanel contentPane;
+    private JButton btn;
+    private JTextField textField;
+    private JTextField passwordField;
 
     public UserHome(Connection connection, String userName, String password) throws IOException {
         int cl_id = -98;
+        int count = 0;
         int usr_id = -98;
         int hero_id = -98;
 
@@ -97,6 +100,18 @@ public class UserHome extends JFrame {
                 sh_name = rs.getString("name");
                 System.out.println("armor_name: " + sh_name);
             }
+
+            st = (PreparedStatement) connection
+                    .prepareStatement("Select count(*) from heroes where user_id=?");
+            st.setInt(1, usr_id);
+            rs = st.executeQuery();
+            //pobranie id usera
+            while (rs.next()) {
+                count = rs.getInt("count(*)");
+                System.out.println("Has user heroes?: " + count);
+            }
+
+
             try {
                 st.close();
             } catch (SQLException ex) {
@@ -116,28 +131,88 @@ public class UserHome extends JFrame {
         contentPane.setLayout(null);
 
         JLabel helLabel = new JLabel(hel_name);
-        helLabel.setBounds(600, 100, 100, 100);
+        helLabel.setBounds(800, 100, 200, 100);
         helLabel.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(helLabel);
 
 
         JLabel armLabel = new JLabel(arm_name);
-        armLabel.setBounds(600, 300, 100, 100);
+        armLabel.setBounds(800, 200, 200, 100);
         armLabel.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(armLabel);
 
         JLabel weapLabel = new JLabel(weap_name);
-        weapLabel.setBounds(400, 300, 100, 100);
+        weapLabel.setBounds(800, 300, 200, 100);
         weapLabel.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(weapLabel);
 
 
         JLabel shiLabel = new JLabel(sh_name);
-        shiLabel.setBounds(800, 300, 150, 150);
+        shiLabel.setBounds(800, 400, 200, 150);
         shiLabel.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(shiLabel);
+        int finalUsr_id = usr_id;
 
 
+        if (count <= 0) {
+            textField = new JTextField();
+            textField.setFont(new Font("Tahoma", Font.PLAIN, 32));
+            textField.setBounds(481, 170, 281, 68);
+            contentPane.add(textField);
+            textField.setColumns(10);
+
+            passwordField = new JTextField();
+            passwordField.setFont(new Font("Tahoma", Font.PLAIN, 32));
+            passwordField.setBounds(481, 286, 281, 68);
+            contentPane.add(passwordField);
+            btn = new JButton("Create Character ");
+            btn.setFont(new Font("Tahoma", Font.PLAIN, 16));
+            btn.setBounds(100, 100, 162, 73);
+            btn.addActionListener(new ActionListener() {
+
+                public void actionPerformed(ActionEvent e) {
+                    String heroesName = textField.getText();
+                    int s = -5;
+                    String className = passwordField.getText();
+                    try {
+
+                        Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
+                                "root", "piotrek22");
+                        PreparedStatement st = (PreparedStatement) connection
+                                .prepareStatement("select id from classes where name = ?");
+                        st.setString(1, className);
+                        ResultSet rs = st.executeQuery();
+                        //pobranie id usera
+                        while (rs.next()) {
+                            s = rs.getInt("id");
+                        }
+                        System.out.println(s);
+                        if (s < 0)
+                            JOptionPane.showMessageDialog(btn, "Wrong Class Name ");
+                        else {
+                            st = (PreparedStatement) connection
+                                    .prepareStatement("insert into heroes(class_id,name,user_id) values(?,?,?)");
+
+                            st.setInt(1, s);
+                            st.setString(2, heroesName);
+                            st.setInt(3, finalUsr_id);
+                            st.executeUpdate();
+                            dispose();
+                            JOptionPane.showMessageDialog(btn, "You need to relog! ");
+                            UserLogin frame = new UserLogin();
+                            frame.setVisible(true);
+                        }
+
+                    } catch (SQLException sqlException) {
+                        sqlException.printStackTrace();
+                        JOptionPane.showMessageDialog(btn, "Name Of character has already been taken ");
+                    }
+
+
+                }
+            });
+            contentPane.add(btn);
+        }
 
 
        /* BufferedImage myPicture = ImageIO.read(new File("/home/piotr/Documents/database-project/src/jpg/warrior.jpg"));
