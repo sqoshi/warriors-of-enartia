@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.*;
 
-class UserLogin extends JFrame {
+public class RegisterPanel extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JTextField textField;
@@ -18,11 +18,7 @@ class UserLogin extends JFrame {
     private JLabel label;
     private JPanel contentPane;
 
-    /**
-     * Create the frame.
-     */
-    public UserLogin() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public RegisterPanel(Connection connection) throws IOException, SQLException {
         setBounds(450, 190, 1014, 597);
         setResizable(false);
         contentPane = new JPanel();
@@ -60,7 +56,6 @@ class UserLogin extends JFrame {
         lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 31));
         lblPassword.setBounds(250, 286, 193, 52);
         contentPane.add(lblPassword);
-
         btnNewButton = new JButton("Login");
         btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
         btnNewButton.setBounds(545, 392, 162, 73);
@@ -69,27 +64,37 @@ class UserLogin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String userName = textField.getText();
                 String password = passwordField.getText();
+                int a = 0, b = 0;
                 try {
 
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
                             "root", "piotrek22");
 
+                    PreparedStatement stmt1 = (PreparedStatement) connection
+                            .prepareStatement("select count(*) from users");
+                    ResultSet rs1 = stmt1.executeQuery();
+                    while (rs1.next()) {
+                        a = rs1.getInt("count(*)");
+                    }
+
                     PreparedStatement st = (PreparedStatement) connection
-                            .prepareStatement("Select login, password from users where login=? and password=?");
+                            .prepareStatement("insert into users(login,password,type) values(?,?,1)");
 
                     st.setString(1, userName);
                     st.setString(2, password);
-                    ResultSet rs = st.executeQuery();
+                    st.executeUpdate();
+                    PreparedStatement stmt2 = (PreparedStatement) connection
+                            .prepareStatement("select count(*) from users");
+                    ResultSet rs2 = stmt2.executeQuery();
+                    while (rs2.next()) {
+                        b = (rs2.getInt("count(*)"));
+                    }
 
-
-                    if (rs.next()) {
+                    System.out.println(a + " : " + b);
+                    if (a != b) {
                         dispose();
-                        UserHome ah = new UserHome(connection, userName, password);
-                        ah.setTitle("Welcome");
-                        ah.setVisible(true);
-                        JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
-                    } else {
-                        JOptionPane.showMessageDialog(btnNewButton, "Wrong Username & Password");
+                        JOptionPane.showMessageDialog(btnNewButton, "You have successfully registered in");
+
                     }
                     try {
                         st.close();
@@ -97,8 +102,8 @@ class UserLogin extends JFrame {
                         ex.printStackTrace();
                     }
 
-                } catch (SQLException | IOException sqlException) {
-                    sqlException.printStackTrace();
+                } catch (SQLException sqlException) {
+                    JOptionPane.showMessageDialog(btnNewButton, "Wrong Username ");
                 }
 
 
@@ -106,47 +111,5 @@ class UserLogin extends JFrame {
         });
         contentPane.add(btnNewButton);
 
-        registerButton = new JButton("Register");
-        registerButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
-        registerButton.setBounds(545, 472, 162, 73);
-        registerButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                try {
-
-                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
-                            "root", "piotrek22");
-
-                    RegisterPanel ah = new RegisterPanel(connection);
-                    ah.setTitle("Welcome");
-                    ah.setVisible(true);
-
-                } catch (SQLException | IOException sqlException) {
-                    sqlException.printStackTrace();
-                }
-
-
-            }
-        });
-        contentPane.add(registerButton);
-        label = new JLabel("");
-        label.setBounds(0, 0, 1008, 562);
-        contentPane.add(label);
-    }
-
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    UserLogin frame = new UserLogin();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 }

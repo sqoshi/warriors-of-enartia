@@ -1,11 +1,7 @@
 package sample;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -130,7 +126,7 @@ public class UserHome extends JFrame {
         armLabel.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(armLabel);
 
-        JLabel weapLabel = new JLabel( weap_name);
+        JLabel weapLabel = new JLabel(weap_name);
         weapLabel.setBounds(400, 300, 100, 100);
         weapLabel.setHorizontalAlignment(JLabel.CENTER);
         contentPane.add(weapLabel);
@@ -144,13 +140,13 @@ public class UserHome extends JFrame {
 
 
 
-        BufferedImage myPicture = ImageIO.read(new File("/home/piotr/Documents/database-project/src/jpg/warrior.jpg"));
+       /* BufferedImage myPicture = ImageIO.read(new File("/home/piotr/Documents/database-project/src/jpg/warrior.jpg"));
         JLabel picLabel = new JLabel(
                 new ImageIcon(
                         myPicture.getScaledInstance(
                                 300,500,Image.SCALE_DEFAULT)));
         picLabel.setBounds(500, 100, 300, 500);
-        contentPane.add(picLabel);
+        contentPane.add(picLabel);*/
 
 
     }

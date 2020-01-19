@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.11.25)  11 JAN 2020 21:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2019/dev/Debian) (preloaded format=pdflatex 2019.11.25)  11 JAN 2020 21:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -380,6 +380,8 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 19.
 LaTeX Info: Redefining \pageref on input line 19.
 LaTeX Info: Redefining \nameref on input line 19.
+
+(./raport.out) (./raport.out)
 \@outlinefile=\write3
 \openout3 = `raport.out'.
 
@@ -420,7 +422,7 @@ Package caption Info: End \AtBeginDocument code.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-</home/piotr/Documents/database-project/src/jpg/project.png, id=36, 929.4725pt 
+</home/piotr/Documents/database-project/src/jpg/project.png, id=94, 929.4725pt 
 x 563.10374pt>
 File: /home/piotr/Documents/database-project/src/jpg/project.png Graphic file (
 type png)
@@ -428,81 +430,74 @@ type png)
 Package pdftex.def Info: /home/piotr/Documents/database-project/src/jpg/project
 .png  used on input line 88.
 (pdftex.def)             Requested size: 546.0084pt x 330.79343pt.
- [4 </home/piotr/Documents/database-project/src/jpg/project.png (PNG copy)>]
-</home/piotr/Documents/database-project/src/jpg/warrior.jpg, id=43, 1485.09761p
+</home/piotr/Documents/database-project/src/jpg/warrior.jpg, id=95, 1485.09761p
 t x 1954.34366pt>
 File: /home/piotr/Documents/database-project/src/jpg/warrior.jpg Graphic file (
 type jpg)
 <use /home/piotr/Documents/database-project/src/jpg/warrior.jpg>
 Package pdftex.def Info: /home/piotr/Documents/database-project/src/jpg/warrior
-.jpg  used on input line 96.
+.jpg  used on input line 95.
 (pdftex.def)             Requested size: 163.80418pt x 215.54506pt.
-</home/piotr/Documents/database-project/src/jpg/mage.jpeg, id=44, 225.84375pt x
+</home/piotr/Documents/database-project/src/jpg/mage.jpeg, id=96, 225.84375pt x
  225.84375pt>
 File: /home/piotr/Documents/database-project/src/jpg/mage.jpeg Graphic file (ty
 pe jpg)
 <use /home/piotr/Documents/database-project/src/jpg/mage.jpeg>
 Package pdftex.def Info: /home/piotr/Documents/database-project/src/jpg/mage.jp
-eg  used on input line 100.
+eg  used on input line 99.
 (pdftex.def)             Requested size: 218.40002pt x 218.4134pt.
-</home/piotr/Documents/database-project/src/jpg/archer.jpg, id=45, 1129.21875pt
+</home/piotr/Documents/database-project/src/jpg/archer.jpg, id=97, 1129.21875pt
  x 1129.21875pt>
 File: /home/piotr/Documents/database-project/src/jpg/archer.jpg Graphic file (t
 ype jpg)
 <use /home/piotr/Documents/database-project/src/jpg/archer.jpg>
 Package pdftex.def Info: /home/piotr/Documents/database-project/src/jpg/archer.
-jpg  used on input line 104.
+jpg  used on input line 103.
 (pdftex.def)             Requested size: 218.40002pt x 218.39618pt.
- [5]
-Overfull \vbox (75.6998pt too high) has occurred while \output is active []
 
 
-[6 </home/piotr/Documents/database-project/src/jpg/warrior.jpg> </home/piotr/Do
-cuments/database-project/src/jpg/mage.jpeg> </home/piotr/Documents/database-pro
-ject/src/jpg/archer.jpg>]
-</home/piotr/Documents/database-project/src/jpg/speculations.jpg, id=56, 1495.5
+LaTeX Warning: Float too large for page by 40.05965pt on input line 105.
+
+</home/piotr/Documents/database-project/src/jpg/speculations.jpg, id=98, 1495.5
 875pt x 1084.05pt>
 File: /home/piotr/Documents/database-project/src/jpg/speculations.jpg Graphic f
 ile (type jpg)
 <use /home/piotr/Documents/database-project/src/jpg/speculations.jpg>
 Package pdftex.def Info: /home/piotr/Documents/database-project/src/jpg/specula
-tions.jpg  used on input line 111.
+tions.jpg  used on input line 110.
 (pdftex.def)             Requested size: 546.0084pt x 395.76595pt.
+[4 </home/piotr/Documents/database-project/src/jpg/project.png (PNG copy)>]
+[5 </home/piotr/Documents/database-project/src/jpg/warrior.jpg> </home/piotr/Do
+cuments/database-project/src/jpg/mage.jpeg> </home/piotr/Documents/database-pro
+ject/src/jpg/archer.jpg>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 117.
- [7 </home/piotr/Documents/database-project/src/jpg/speculations.jpg>]
+ [6 </home/piotr/Documents/database-project/src/jpg/speculations.jpg>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 117.
  (./raport.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 117.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 117.
-
-
-Package rerunfilecheck Warning: File `raport.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `raport.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  7B3E231739BBA294B7C3AB86B7F75518;947.
+Package rerunfilecheck Info: File `raport.out' has not changed.
+(rerunfilecheck)             Checksum: 7B3E231739BBA294B7C3AB86B7F75518;947.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 117.
  ) 
 Here is how much of TeX's memory you used:
- 8027 strings out of 494443
- 122150 string characters out of 6174711
- 219347 words of memory out of 5000000
- 11608 multiletter control sequences out of 15000+600000
+ 8049 strings out of 494443
+ 122438 string characters out of 6174711
+ 219453 words of memory out of 5000000
+ 11627 multiletter control sequences out of 15000+600000
  11970 words of font info for 33 fonts, out of 8000000 for 9000
  81 hyphenation exceptions out of 8191
- 36i,8n,38p,383b,407s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,8n,38p,383b,413s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/piotr/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1200.600
 pk> </home/piotr/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1095.60
 0pk> </home/piotr/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecbx1440.6
 00pk> </home/piotr/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1200.
 600pk> </home/piotr/.texlive2018/texmf-var/fonts/pk/ljfour/jknappen/ec/ecrm1728
 .600pk>
-Output written on raport.pdf (7 pages, 721969 bytes).
+Output written on raport.pdf (6 pages, 722756 bytes).
 PDF statistics:
- 259 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 29 named destinations out of 1000 (max. 500000)
- 26 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 309 PDF objects out of 1000 (max. 8388607)
+ 126 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 170 words of extra memory for PDF output out of 10000 (max. 10000000)
 
