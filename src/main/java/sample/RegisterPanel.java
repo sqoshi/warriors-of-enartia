@@ -14,19 +14,32 @@ public class RegisterPanel extends JFrame {
     private JTextField textField;
     private JPasswordField passwordField;
     private JButton btnNewButton;
-    private JButton registerButton;
-    private JLabel label;
     private JPanel contentPane;
 
     public RegisterPanel(Connection connection) throws IOException, SQLException {
         setBounds(450, 190, 1014, 597);
         setResizable(false);
-        contentPane = new JPanel();
+        contentPane = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics grphcs) {
+                super.paintComponent(grphcs);
+                Graphics2D g2d = (Graphics2D) grphcs;
+                g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON);
+                GradientPaint gp = new GradientPaint(0, 0,
+                        getBackground().brighter().brighter(), 0, getHeight(),
+                        getBackground().darker().darker());
+                g2d.setPaint(gp);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+
+            }
+
+        };
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
-        JLabel lblNewLabel = new JLabel("Registration Panel");
+        JLabel lblNewLabel = new JLabel("Registration");
         lblNewLabel.setForeground(Color.BLACK);
         lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 46));
         lblNewLabel.setBounds(423, 13, 273, 93);
