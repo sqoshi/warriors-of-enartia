@@ -15,7 +15,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class UserHome extends JFrame {
+public class UserHome extends JFrame implements PanelHome {
 
     private static final long serialVersionUID = 1L;
     int dungeonTime;
@@ -24,6 +24,7 @@ public class UserHome extends JFrame {
     int hero_id;
     int user_id;
     int classOf_id;
+    String Heroes_name;
     String newHeroClass;
     String class_name;
     String shield_name;
@@ -81,6 +82,7 @@ public class UserHome extends JFrame {
             //pobraeni id classy, herosa
             rs = st.executeQuery();
             while (rs.next()) {
+                setHeroes_name(rs.getString("name"));
                 setGold(rs.getInt("gold"));
                 setHero_id(rs.getInt("id"));//heores id
                 setClassOf_id(rs.getInt("class_id"));
@@ -275,15 +277,21 @@ public class UserHome extends JFrame {
             ) {
                 shopPrices.add(new Random().nextInt(1200));
             }
+            JLabel nickLabel = new JLabel(getHeroes_name());
+            nickLabel.setBounds(350, 0, 200, 100);
+            nickLabel.setHorizontalAlignment(JLabel.CENTER);
+            contentPane.add(nickLabel);
+
             attLabel = new JLabel("Attack Damage: " + heroes_Attack);
-            attLabel.setBounds(450, 0, 200, 100);
+            attLabel.setBounds(550, 0, 200, 100);
             attLabel.setHorizontalAlignment(JLabel.CENTER);
             contentPane.add(attLabel);
 
             defLabel = new JLabel("Defence Points: " + heroes_defence);
-            defLabel.setBounds(650, 0, 200, 100);
+            defLabel.setBounds(750, 0, 200, 100);
             defLabel.setHorizontalAlignment(JLabel.CENTER);
             contentPane.add(defLabel);
+
             JList list = new JList(dungs.toArray());
             scrollPane = new JScrollPane(list);
             scrollPane.setBounds(100, 100, 250, 150);
@@ -569,19 +577,19 @@ public class UserHome extends JFrame {
             class_button1.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setNewHeroClass("Mage");
-                    JOptionPane.showMessageDialog(btn, "You choosed " + getNewHeroClass());
+                    JOptionPane.showMessageDialog(contentPane, "You choosed " + getNewHeroClass());
                 }
             });
             class_button2.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setNewHeroClass("Warrior");
-                    JOptionPane.showMessageDialog(btn, "You choosed " + getNewHeroClass());
+                    JOptionPane.showMessageDialog(contentPane, "You choosed " + getNewHeroClass());
                 }
             });
             class_button3.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     setNewHeroClass("Archer");
-                    JOptionPane.showMessageDialog(btn, "You choosed " + getNewHeroClass());
+                    JOptionPane.showMessageDialog(contentPane, "You choosed " + getNewHeroClass());
                 }
             });
             contentPane.add(class_button1);
@@ -591,6 +599,14 @@ public class UserHome extends JFrame {
 
         }
 
+    }
+
+    public String getHeroes_name() {
+        return Heroes_name;
+    }
+
+    public void setHeroes_name(String heroes_name) {
+        Heroes_name = heroes_name;
     }
 
     public int getHeroes_Attack() {

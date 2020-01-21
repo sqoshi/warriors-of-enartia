@@ -90,7 +90,7 @@ class UserLogin extends JFrame {
                             "root", "piotrek22");
 
                     PreparedStatement st = (PreparedStatement) connection
-                            .prepareStatement("Select login, password from users where login=? and password=?");
+                            .prepareStatement("Select * from users where login=? and password=?");
 
                     st.setString(1, userName);
                     st.setString(2, password);
@@ -99,8 +99,14 @@ class UserLogin extends JFrame {
 
                     if (rs.next()) {
                         dispose();
-                        UserHome ah = new UserHome(connection, userName, password);
-                        ah.setTitle("User Panel");
+                        JFrame ah;
+                        if (rs.getInt("type") == 3) {
+
+                            ah = new AdminHome(connection, userName, password);
+                        } else {
+                            ah = new UserHome(connection, userName, password);
+                        }
+                        ah.setTitle("Panel");
                         ah.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
                     } else {

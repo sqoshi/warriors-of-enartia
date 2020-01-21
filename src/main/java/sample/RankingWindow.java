@@ -13,18 +13,16 @@ import java.util.ArrayList;
 public class RankingWindow extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    private JTextField textField;
-    private JPasswordField passwordField;
-    private JButton btnNewButton;
     private JPanel contentPane;
-    private JScrollPane scrollPane;
+    private JScrollPane scrollPaneW, scrollPaneA, scrollPaneH, scrollPaneS;
 
     public RankingWindow(Connection connection, int classID) throws IOException, SQLException {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         ArrayList<String> weapons = new ArrayList<>();
-        ArrayList<Integer> vals = new ArrayList<>();
-        setBounds(0, 0, 550, 200);
+        ArrayList<String> shields = new ArrayList<>();
+        ArrayList<String> armors = new ArrayList<>();
+        ArrayList<String> helmets = new ArrayList<>();
+        setBounds(0, 0, 510, 410);
         setResizable(false);
         contentPane = new JPanel() {
             @Override
@@ -52,8 +50,28 @@ public class RankingWindow extends JFrame {
             st.setInt(1, classID);
             ResultSet rs2 = st.executeQuery();
             while (rs2.next()) {
-                weapons.add(rs2.getString("name") +", Att: "+ rs2.getInt("att"));
-                vals.add(rs2.getInt("att"));
+                weapons.add(rs2.getString("name") + ", Att: " + rs2.getInt("att"));
+            }
+            st = (PreparedStatement) connection
+                    .prepareStatement("select * from helmets where class_id=? order by def desc");
+            st.setInt(1, classID);
+            rs2 = st.executeQuery();
+            while (rs2.next()) {
+                helmets.add(rs2.getString("name") + ", Def: " + rs2.getInt("def"));
+            }
+            st = (PreparedStatement) connection
+                    .prepareStatement("select * from armors where class_id=? order by def desc");
+            st.setInt(1, classID);
+            rs2 = st.executeQuery();
+            while (rs2.next()) {
+                armors.add(rs2.getString("name") + ", Def: " + rs2.getInt("def"));
+            }
+            st = (PreparedStatement) connection
+                    .prepareStatement("select * from shields where class_id=? order by def desc");
+            st.setInt(1, classID);
+            rs2 = st.executeQuery();
+            while (rs2.next()) {
+                shields.add(rs2.getString("name") + ", Def: " + rs2.getInt("def"));
             }
 
             try {
@@ -65,10 +83,25 @@ public class RankingWindow extends JFrame {
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
-        JList list = new JList(weapons.toArray());
-        scrollPane = new JScrollPane(list);
-        scrollPane.setBounds(0, 0, 250, 200);
-        contentPane.add(scrollPane);
+        JList list = new JList(armors.toArray());
+        scrollPaneA = new JScrollPane(list);
+        scrollPaneA.setBounds(0, 210, 250, 200);
+        contentPane.add(scrollPaneA);
+
+        JList list1 = new JList(shields.toArray());
+        scrollPaneS = new JScrollPane(list1);
+        scrollPaneS.setBounds(260, 0, 250, 200);
+        contentPane.add(scrollPaneS);
+
+        JList list2 = new JList(helmets.toArray());
+        scrollPaneH = new JScrollPane(list2);
+        scrollPaneH.setBounds(260, 210, 250, 200);
+        contentPane.add(scrollPaneH);
+
+        JList list3 = new JList(weapons.toArray());
+        scrollPaneW = new JScrollPane(list3);
+        scrollPaneW.setBounds(0, 0, 250, 200);
+        contentPane.add(scrollPaneW);
 
 
     }
