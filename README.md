@@ -17,6 +17,7 @@ System Logowania.
 Ranking herosów - całkowity, klasowy.
 Ranking przedmiotów - osobny dla każdego rodzaju przedmiotu.
 Panel gracza
+```
 Panel Administratora :-
   -procedura wprowadzania nowych zestawów broni
   -procedura wprowadzenia nowych zestawów defensywnych helmets, shields, armors..
@@ -25,7 +26,7 @@ Panel Administratora :-
   -procedura usunięcia postaci( System kar - banów)
   -procedura przydzielenia konkretnego przedmiotu, np dla najlepszego gracza w miesiącu
   -procedura przydzielenia surowca dla gracza.
- 
+ ```
 W celu zapewnienia spójnej funkcjonalności i optymalizacji bazy danych zostały użyte constrainty, triggery, zapytania dynamiczne, indexy, transakcje, backup&restore.
 Między innymi :
 Procedury:
