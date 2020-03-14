@@ -10,7 +10,7 @@ W grze jest dostępny ranking herosow oparty na ich ataku i defensywnie. Ranking
 
 Interfejs graficzny GUI aplikacji został napisany w Javie (Swing).
 Część bazodanowa składa się z relacyjnej bazy danych MySQL.
-Komunikacja pomiędzy powyższymi technologami jest zapewniona dzięki interfejsowi oprogramowania JDBC, technice 'Connection Pooling', która ogranicza ilość kosztownych połączeń z bazą do minimum.
+Komunikacja pomiędzy powyższymi technologami jest zapewniona dzięki interfejsowi oprogramowania JDBC, technice 'Connection Pooling', która ogranicza ilość kosztownych połączeń z bazą do minimum. Zaprojektowana w sposób otwarty na dalsze rozwijanie aplikacji, dodawnie nowych klas, przedmiotów czy samych wypraw.
 ```
 Aplikacja składa się z wielu podsystemów:-
 System Rejestracji Kont.
