@@ -28,7 +28,7 @@ Panel Administratora :-
  
 W celu zapewnienia spójnej funkcjonalności i optymalizacji bazy danych zostały użyte constrainty, triggery, zapytania dynamiczne, indexy, transakcje, backup&restore.
 Między innymi :
-Procedury:-
+Procedury:
   -insertWeaponSet(cursor),
   -insertClassSet,
   -fundamental_class_insert,
