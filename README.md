@@ -11,12 +11,14 @@ W grze jest dostępny ranking herosow oparty na ich ataku i defensywnie. Ranking
 Interfejs graficzny GUI aplikacji został napisany w Javie (Swing).
 Część bazodanowa składa się z relacyjnej bazy danych MySQL.
 Komunikacja pomiędzy powyższymi technologami jest zapewniona dzięki interfejsowi oprogramowania JDBC, technice 'Connection Pooling', która ogranicza ilość kosztownych połączeń z bazą do minimum.
+```
 Aplikacja składa się z wielu podsystemów:-
 System Rejestracji Kont.
 System Logowania.
 Ranking herosów - całkowity, klasowy.
 Ranking przedmiotów - osobny dla każdego rodzaju przedmiotu.
 Panel gracza
+```
 ```
 Panel Administratora :-
   -procedura wprowadzania nowych zestawów broni
@@ -28,6 +30,7 @@ Panel Administratora :-
   -procedura przydzielenia surowca dla gracza.
  ```
 W celu zapewnienia spójnej funkcjonalności i optymalizacji bazy danych zostały użyte constrainty, triggery, zapytania dynamiczne, indexy, transakcje, backup&restore.
+```
 Między innymi :
 -Procedury:
   -insertWeaponSet(cursor),
@@ -39,6 +42,7 @@ Triggery:-
   -wearUpNewHeroes
 Transkacje:-
   -basicSets
-indexy, constrainty przy tworzeniu tabeli.
+```
+indexy, constrainty przy tworzeniu tabeli w kodzie programu.
 
                       
