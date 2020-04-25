@@ -1,0 +1,146 @@
+
+
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="dataSource">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="database-model">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element name="root">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="ServerVersion"/>
+                    <xs:element type="xs:string" name="DefaultEngine"/>
+                    <xs:element type="xs:string" name="DefaultTmpEngine"/>
+                    <xs:element type="xs:string" name="DefaultCasing"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:byte" name="id"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="schema" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="Current" minOccurs="0"/>
+                    <xs:element type="xs:string" name="Collation"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:byte" name="id" use="optional"/>
+                  <xs:attribute type="xs:byte" name="parent" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="collation" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="Charset"/>
+                    <xs:element type="xs:byte" name="DefaultForCharset"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:short" name="id" use="optional"/>
+                  <xs:attribute type="xs:byte" name="parent" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="table" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute type="xs:short" name="id" use="optional"/>
+                      <xs:attribute type="xs:byte" name="parent" use="optional"/>
+                      <xs:attribute type="xs:string" name="name" use="optional"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="routine">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:short" name="SourceTextLength"/>
+                    <xs:element type="xs:string" name="Definer"/>
+                    <xs:element type="xs:string" name="RoutineKind"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:short" name="id" use="optional"/>
+                  <xs:attribute type="xs:byte" name="parent" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="column" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="Position"/>
+                    <xs:element type="xs:string" name="DataType"/>
+                    <xs:element type="xs:byte" name="NotNull"/>
+                    <xs:element type="xs:byte" name="SequenceIdentity" minOccurs="0"/>
+                    <xs:element type="xs:string" name="ColumnKind"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:short" name="id" use="optional"/>
+                  <xs:attribute type="xs:short" name="parent" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="index">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="ColNames"/>
+                    <xs:element type="xs:byte" name="Unique"/>
+                    <xs:element type="xs:string" name="Type"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:short" name="id"/>
+                  <xs:attribute type="xs:short" name="parent"/>
+                  <xs:attribute type="xs:string" name="name"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="key" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="NameSurrogate" minOccurs="0"/>
+                    <xs:element type="xs:string" name="ColNames" minOccurs="0"/>
+                    <xs:element type="xs:byte" name="Primary" minOccurs="0"/>
+                    <xs:element type="xs:string" name="UnderlyingIndexName" minOccurs="0"/>
+                    <xs:element type="xs:byte" name="Position" minOccurs="0"/>
+                    <xs:element type="xs:string" name="DataType" minOccurs="0"/>
+                    <xs:element type="xs:byte" name="NotNull" minOccurs="0"/>
+                    <xs:element type="xs:byte" name="SequenceIdentity" minOccurs="0"/>
+                    <xs:element type="xs:string" name="ColumnKind" minOccurs="0"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:short" name="id" use="optional"/>
+                  <xs:attribute type="xs:short" name="parent" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="trigger">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:short" name="SourceTextLength"/>
+                    <xs:element type="xs:string" name="Definer"/>
+                    <xs:element type="xs:string" name="Turn"/>
+                    <xs:element type="xs:string" name="Events"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:short" name="id"/>
+                  <xs:attribute type="xs:short" name="parent"/>
+                  <xs:attribute type="xs:string" name="name"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="argument" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:byte" name="Position"/>
+                    <xs:element type="xs:string" name="DataType"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:short" name="id" use="optional"/>
+                  <xs:attribute type="xs:short" name="parent" use="optional"/>
+                  <xs:attribute type="xs:string" name="name" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:choice>
+            <xs:attribute type="xs:string" name="serializer"/>
+            <xs:attribute type="xs:string" name="dbms"/>
+            <xs:attribute type="xs:string" name="family-id"/>
+            <xs:attribute type="xs:float" name="format-version"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="name"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

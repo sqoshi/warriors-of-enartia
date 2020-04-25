@@ -506,7 +506,7 @@ public class UserHome extends JFrame implements PanelHome {
                     try {
 
                         Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
-                                "root", "piotrek22");
+                                "root", "secret");
                         PreparedStatement st = (PreparedStatement) connection
                                 .prepareStatement("select id from classes where name = ?");
                         st.setString(1, getNewHeroClass());

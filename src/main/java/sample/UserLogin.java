@@ -87,7 +87,7 @@ class UserLogin extends JFrame {
                 try {
 
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
-                            "root", "piotrek22");
+                            "root", "secret");
 
                     PreparedStatement st = (PreparedStatement) connection
                             .prepareStatement("Select * from users where login=? and password=?");
@@ -136,7 +136,7 @@ class UserLogin extends JFrame {
                 try {
 
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
-                            "root", "piotrek22");
+                            "root", "secret");
 
                     RegisterPanel ah = new RegisterPanel(connection);
                     ah.setTitle("Register Panel");

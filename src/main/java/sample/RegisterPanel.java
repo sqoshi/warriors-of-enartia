@@ -81,7 +81,7 @@ public class RegisterPanel extends JFrame {
                 try {
 
                     Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project",
-                            "root", "piotrek22");
+                            "root", "secret");
 
                     PreparedStatement stmt1 = (PreparedStatement) connection
                             .prepareStatement("select count(*) from users");

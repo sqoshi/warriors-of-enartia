@@ -1,31 +1,50 @@
+drop database project;
+create database project;
+show databases;
+use project;
+set foreign_key_checks = 0;
 create table armors
 (
-    id int auto_increment
+    id       int auto_increment
         primary key,
-    name varchar(25) not null,
+    name     varchar(25) not null,
+    def      int(11)     NOT NULL,
+    class_id int         NOT NULL,
+    type     varchar(25) NOT NULL,
     constraint armors_name_uindex
         unique (name)
 );
 create table helmets
 (
-    id int auto_increment
+    id       int auto_increment
         primary key,
-    name varchar(25) not null,
+    name     varchar(25) not null,
+    def      int(11)     NOT NULL,
+    class_id int         NOT NULL,
+    type     varchar(25) NOT NULL,
     constraint helmets_name_uindex
         unique (name)
 );
-CREATE TABLE `shields` (
-`id` int(11) NOT NULL AUTO_INCREMENT,
-`name` varchar(25) NOT NULL,
-PRIMARY KEY (`id`),
-UNIQUE KEY `shields_name_uindex` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `shields`
+(
+    `id`     int(11)     NOT NULL AUTO_INCREMENT,
+    `name`   varchar(25) NOT NULL,
+    def      int(11)     NOT NULL,
+    class_id int         NOT NULL,
+    size     varchar(25) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `shields_name_uindex` (`name`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
 
 create table weapons
 (
-    id int auto_increment
+    id       int         NOT NULL auto_increment
         primary key,
-    name varchar(25) not null,
+    name     varchar(25) not null,
+    class_id int         NOT NULL,
+    att      int(11)     NOT NULL,
+    `range`  varchar(25) NOT NULL,
     constraint weapons_name_uindex
         unique (name)
 );
@@ -35,7 +54,7 @@ create table equipment
     weapon_id int not null,
     shield_id int not null,
     helmet_id int not null,
-    armor_id int not null,
+    armor_id  int not null,
     constraint equipment_heroes_id_uindex
         unique (heroes_id),
     constraint equipment_armors_id_fk
@@ -49,14 +68,14 @@ create table equipment
     constraint equipment_weapons_id_fk
         foreign key (weapon_id) references weapons (id)
 );
-
-
 create table heroes
 (
-    id int auto_increment
+    id       int auto_increment
         primary key,
-    user_id int not null,
-    class_id int not null,
+    user_id  int         not null,
+    class_id int         not null,
+    name     varchar(25) not null,
+    gold     int         not null default 0,
     constraint heroes_classes_id_fk
         foreign key (class_id) references classes (id),
     constraint heroes_users_id_fk
@@ -65,7 +84,7 @@ create table heroes
 
 create table classes
 (
-    id int auto_increment
+    id   int auto_increment
         primary key,
     name varchar(25) not null,
     constraint classes_name_uindex
@@ -73,12 +92,26 @@ create table classes
 );
 create table users
 (
-    id int auto_increment
+    id       int auto_increment
         primary key,
-    login varchar(10) not null,
+    login    varchar(10) not null,
     password varchar(10) not null,
-    type int not null
+    type     int         not null
 );
+create table dungeons
+(
+    id   int auto_increment
+        primary key,
+    name varchar(25) not null,
+    def  int(11)     NOT NULL,
+    att  int(11)     NOT NULL,
+    constraint armors_name_uindex
+        unique (name)
+);
+insert into dungeons(name, att, def)
+VALUES ('123', 1, 2),
+       ('234', 3, 4),
+       ('345', 4, 5);
 
 delimiter //
 drop procedure if exists insertWeaponSet;
@@ -105,6 +138,7 @@ BEGIN
 END;
 //
 delimiter ;
+call insertWeaponSet('Black');
 
 delimiter //
 drop procedure if exists insertClassSet;
@@ -156,6 +190,7 @@ BEGIN
     insert into classes(name) values ('Mage'), ('Warrior'), ('Archer');
 end //
 delimiter ;
+
 
 delimiter $$
 drop trigger if exists logincheck;
@@ -214,12 +249,16 @@ call insertClassSet('Standard', 'Archer');
 call insertClassSet('Standard', 'Mage');
 call insertClassSet('Standard', 'Warrior');
 call insertWeaponSet('Standard');
+call insertClassSet('Magnificient', 'Mage');
+call insertClassSet('Turkish', 'Warrior');
+call insertClassSet('Gold', 'Archer');
 SET foreign_key_checks = 1;
 COMMIT;
 //
 delimiter ;
 
-
+select * from users;
+update users set  type = 3 where id =1;
 
 create trigger wearUpNewHeroes
     after insert
@@ -244,3 +283,4 @@ create trigger wearUpNewHeroes
                                               where class_id = NEW.class_id
                                               order by def asc
                                               limit 1));
+

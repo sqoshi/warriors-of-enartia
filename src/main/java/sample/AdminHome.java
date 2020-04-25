@@ -268,7 +268,7 @@ public class AdminHome extends JFrame {
                         JOptionPane.showMessageDialog(contentPane, "You need to input something in as a name");
                         return;
                     }
-                    Integer.parseInt(textFieldUID.getText());
+                   // Integer.parseInt(textFieldUID.getText());
                     PreparedStatement st = (PreparedStatement) connection
                             .prepareStatement("call insertClassSet(?,?)");
                     st.setString(1, textFieldUID.getText());
