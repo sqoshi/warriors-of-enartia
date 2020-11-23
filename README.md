@@ -1,4 +1,56 @@
-#Warrios of Enartia
+# Warrios of Enartia
+
+## Table of contents
+* [Introduction](#Introduction)
+* [Launch](#launch)
+* [Installation](#installation)
+* [Details](#details)
+* [Models](#models)
+* [Code Example](#code-example)
+* [Technologies](#technologies)
+
+
+## Launch
+
+
+## Installation
+
+
+## Introduction
+
+
+## Details
+### UML
+## Models
+### Warrior
+<img src="img/warrior.jpg" height="400" width="300">
+
+### Archer
+<img src="img/archer.jpg" height="400" width="300">
+
+### Mage
+<img src="img/archer.jpeg" height="400" width="300">
+
+## Code Example
+```java
+public void actionPerformed(ActionEvent e) {
+    try {
+        Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/project", "root", "secret");
+        RegisterPanel ah = new RegisterPanel(connection);
+        ah.setTitle("Register Panel");
+        ah.setVisible(true);
+    } catch (SQLException | IOException sqlException) {
+        sqlException.printStackTrace();
+    }
+}
+```
+
+## Technologies
+ - java
+ - mysql
+ - swing
+ - jdbc
+ 
 
 Gra 'Fabularna' polegająca na rozwijaniu własnego bohatera.
 Każdy gracz tworzy własne konto, rejestrowane w bazie danych. Dane rejestracji są weryfikowane, przez odpowiedni podsystem. 
